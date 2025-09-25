@@ -1,0 +1,19 @@
+services:
+  klaide:
+    hostname: klaide.lab
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: 'csalab/klaide:latest'
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - ${BIND:-0.0.0.0:8080}:8080
+    environment:
+      - SHELL=/bin/bash
+      - PASSWORD=${PASSWORD:-Password}
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./startup.sh:/startup.sh
+    entrypoint: ["/bin/bash", "/startup.sh"]
