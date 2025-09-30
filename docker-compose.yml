@@ -15,5 +15,7 @@ services:
       - PASSWORD=${PASSWORD:-Password}
       - PYTHONUNBUFFERED=1
     volumes:
+      - ./index.htm:/usr/share/novnc/index.htm
+      - ./chatbot.svg:/usr/share/novnc/app/images/chatbot.svg
       - ./startup.sh:/startup.sh
     entrypoint: ["/bin/bash", "/startup.sh"]
